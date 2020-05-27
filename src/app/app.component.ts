@@ -8,7 +8,13 @@ import { Component } from '@angular/core';
 export class AppComponent {
   counter = 'Loading...';
 
+  ngOnInit() {
+    console.log("Start fetchint data from backend");
+    // TODO
+  }
+
   onRocketClick() {
     console.log("Launch!");
+    // TODO post naar backend en display resultaat
   }
 }
