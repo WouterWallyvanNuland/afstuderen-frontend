@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CounterService } from './counter.service';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,26 @@ import { Component } from '@angular/core';
 export class AppComponent {
   counter = 'Loading...';
 
+  
+  constructor(private counterservice: CounterService){}
+
   ngOnInit() {
-    console.log("Start fetchint data from backend");
-    // TODO
+    console.log("Start fetching data from backend");
+    this.counterservice
+    .getCurrentCounter()
+    .subscribe((res)=>{
+      console.log(res);
+      this.counter = res.hoeGek;
+    })
   }
 
   onRocketClick() {
     console.log("Launch!");
-    // TODO post naar backend en display resultaat
+    this.counterservice
+    .raiseCounter()
+    .subscribe((res) => {
+      console.log(res);
+      this.counter = "" + res.counter;
+    })
   }
 }
